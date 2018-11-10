@@ -4,7 +4,7 @@ import {choicePages} from './../../content/content';
 import Menu from "../../components/buttonList/buttonList";
 import './chooserPage.scss';
 import {OSCConfig} from "./../../content/content";
-
+import {LEDManager} from "../../utils/LEDManager";
 
 export default class ChooserPage extends Component {
 
@@ -12,6 +12,7 @@ export default class ChooserPage extends Component {
         super(props);
 
         this.tryOSC();
+        this.tryLED();
 
     }
 
@@ -27,6 +28,7 @@ export default class ChooserPage extends Component {
     componentDidUpdate()
     {
        this.tryOSC();
+       this.tryLED();
     }
 
     tryOSC() {
@@ -55,6 +57,23 @@ export default class ChooserPage extends Component {
         });
 
         osc.open(OSCConfig); // start a WebSocket server on port 8080
+    }
+
+    tryLED() {
+        const key = this.props.match.params.key;
+        // Bad url goes back to buttonList
+        if (choicePages[key] === undefined) {
+            console.log('undefined for key ' + key);
+            this.goToMenu();
+        }
+
+        const content = choicePages[key];
+
+        if(content.ledColor !== void 0)
+        {
+           const ledManager = new LEDManager();
+           ledManager.sendColor(content.ledColor.red, content.ledColor.green, content.ledColor.blue);
+        }
     }
 
     render() {

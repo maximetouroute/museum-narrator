@@ -6,9 +6,11 @@
     "node-sass-chokidar": "0.0.3",
     "osc-js": "^2.0.2",
     "react": "^16.0.0",
+    "react-color": "^2.14.1",
     "react-dom": "^16.0.0",
     "react-player": "^1.6.6",
     "react-preload": "^0.6.0",
+    "react-request": "^3.1.2",
     "react-router": "latest",
     "react-router-dom": "^4.2.2",
     "react-scripts": "^2.0.1"

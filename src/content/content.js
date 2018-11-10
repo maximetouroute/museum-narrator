@@ -21,6 +21,7 @@ export const ContentTypes = Object.freeze({
 
 
 
+export const RPI_IP = '192.168.43.177:5000';
 
 export const homepageContent = {
     title: <>Dans les 2 sens</>,
@@ -79,6 +80,14 @@ function endChoices() {
     return daaa;
 }
 
+function rgb(r,g,b) {
+    return {
+        red: r,
+        green: g,
+        blue: b
+    };
+}
+
 export const choicePages = {
 
     firstChoice: {
@@ -97,6 +106,7 @@ export const choicePages = {
 
     reverie: {
         audio: mediationSound,
+        ledColor: rgb(200,0,0),
         text: ``,
         choices: [
             thirdStageChoices()

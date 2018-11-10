@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import './homePage.css';
-import {homepageContent, OSCConfig} from "./../../content/content";
+import {homepageContent} from "./../../content/content";
 
 
 export class HomePage extends Component {
