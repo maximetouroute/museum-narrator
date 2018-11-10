@@ -76,6 +76,28 @@ export default class ChooserPage extends Component {
         }
     }
 
+    getPageStyle() {
+            const key = this.props.match.params.key;
+        // Bad url goes back to buttonList
+        if (choicePages[key] === undefined) {
+            console.log('undefined for key ' + key);
+            this.goToMenu();
+        }
+
+        const content = choicePages[key];
+
+        if(content.ledColor !== void 0)
+        {
+           return {
+               backgroundColor: `rgba(${content.ledColor.red},${content.ledColor.green},${content.ledColor.blue},0.2)`
+           }
+        }
+        else
+        {
+            return {};
+        }
+
+    }
     render() {
         const key = this.props.match.params.key;
         // Bad url goes back to buttonList
@@ -87,7 +109,9 @@ export default class ChooserPage extends Component {
         const content = choicePages[key];
         const choices = content.choices;
         return (<>
-            <div className="menuPage">
+            <div className="menuPage" style={
+                this.getPageStyle()
+            }>
 
                 <div className="message">
                     <div className="text big">{content.text}</div>
