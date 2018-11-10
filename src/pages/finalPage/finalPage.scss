@@ -1,0 +1,77 @@
+@import '../../styles/breakpoints.scss';
+@import '../../styles/mixins.scss';
+@import './../../styles/theme.scss';
+@import './../../styles/globals.scss';
+@import './../../styles/ui-elements.scss';
+
+// Take all available room
+.menuPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
+  .message {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    width: calc(100% - 2rem);
+    display: grid;
+    align-items: start;
+    justify-items: center;
+    color: $mainColor;
+
+    .text {
+      text-align: center;
+      font-size: 2.5em;
+
+      &.big {
+        font-weight: 400;
+        margin-bottom: 0.5em;
+        text-transform: uppercase;
+      }
+
+      &.small {
+        font-size: 1.5em;
+        color: $mainColorIdle;
+      }
+    }
+  }
+
+  .image {
+    align-self: center;
+    width: 50vw;
+    height: auto;
+  }
+
+  .button {
+
+    @extend .Globals-clickable;
+    @extend .Globals-noselect;
+    display: grid;
+    align-self: center;
+    justify-self: center;
+    align-items: center;
+    height: 1.5em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    margin: 1em;
+    box-shadow: inset 0 0 0 1px $mainColorIdle;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: $mainColorIdle;
+
+    @media #{$lt-sm} {
+      width: 85%;
+    }
+    @media #{$gt-xs} {
+      width: 14em;
+    }
+
+    @include fancyButton();
+  }
+}

@@ -4,6 +4,7 @@ import { HomePage } from './pages/home/homePage';
 
 import { BrowserRouter, Route} from 'react-router-dom';
 import ChoicePage from './pages/chooser/chooserPage';
+import FinalPage from './pages/finalPage/finalPage';
 
 class App extends Component {
 
@@ -15,6 +16,7 @@ class App extends Component {
                     <div>
                         <Route exact path={process.env.PUBLIC_URL + '/'} component={HomePage}/>
                         <Route path={process.env.PUBLIC_URL + '/choice/:key'} component={ChoicePage}/>
+                        <Route path={process.env.PUBLIC_URL + '/final'} component={FinalPage}/>
                     </div>
                 </BrowserRouter>
             </div>

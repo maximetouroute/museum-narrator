@@ -1,13 +1,14 @@
 
-export class OSCManager
+export class LEDManager
 {
     constructor()
     {
 
     }
 
-    sendCommand(command)
+    sendColor(r, g, b)
     {
 
+        
     }
 }

@@ -2,9 +2,17 @@ import React from 'react';
 
 
 import soundHappy from './../res/happy.mp3';
-import soundSad from './../res/sad.mp3';
+import mediationSound from './../res/happy.mp3';
 import soundNeutral from './../res/home.mp3';
 
+
+// Final artworks
+import artworkDegout from './../res/artworks/degout.png';
+import artworkReverie from './../res/artworks/reverie.png';
+import artworkCuriosite from './../res/artworks/curiosite.png';
+import artworkEnnui from './../res/artworks/ennui.png';
+import artworkAmusement from './../res/artworks/amusement.png';
+import artworkSerenite from './../res/artworks/serenite.png';
 
 export const ContentTypes = Object.freeze({
     CHOICE:   Symbol("choice"),
@@ -15,82 +23,130 @@ export const ContentTypes = Object.freeze({
 
 
 export const homepageContent = {
-    title: <>Emotion Emotion...</>,
+    title: <>Dans les 2 sens</>,
     subtitle: `By The Musemotifs`,
     actionButtonName: `Get in !`
 };
 
 
 export const OSCConfig = {
-    host:'192.168.1.38',
+    host:'192.168.43.76',
     port: 5000,
 };
+
+function thirdStageChoices() {
+    return {
+        name: 'continue',
+        redirectTo: 'choice/thirdStageChoices'
+    }
+}
+
+function feelingChoices() {
+    return [
+        {
+            name: 'Ennui',
+            redirectTo: 'choice/ennui'
+        },
+        {
+            name: 'Rêverie',
+            redirectTo: 'choice/reverie'
+        },
+        {
+            name: 'Amusement',
+            redirectTo: 'choice/amusement'
+        },
+        {
+            name: 'Sérénité',
+            redirectTo: 'choice/serenite'
+        },
+        {
+            name: 'Curiosité',
+            redirectTo: 'choice/curiosite'
+        },
+        {
+            name: 'Dégoût',
+            redirectTo: 'choice/degout'
+        }
+    ]
+}
+
+function endChoices() {
+    const daaa = feelingChoices().map(choice => {
+        choice.redirectTo = 'final';
+        return choice;
+    });
+
+    return daaa;
+}
 
 export const choicePages = {
 
     firstChoice: {
         audio: soundNeutral,
-        text: `what do you feel ?`,
-        oscOrder:`/millumin/action/launchColumn [1]`,
+        text: `Que ressens-tu face à cette oeuvre ?`,
+        choices: feelingChoices()
+    },
+
+    ennui: {
+        audio: mediationSound,
+        text: ``,
         choices: [
-            {
-                name: 'Sadness',
-                redirectTo: 'choice/sadness'
-            },
-            {
-                name: 'Happiness',
-                redirectTo: 'choice/happiness'
-            }
+            thirdStageChoices()
         ]
     },
 
-    sadness: {
-        audio: soundSad,
-        oscOrder:`/millumin/action/launchColumn [2]`,
-        text: `Well, too bad for you`,
+    reverie: {
+        audio: mediationSound,
+        text: ``,
         choices: [
-            {
-                name: `I want to be happy`,
-                redirectTo: 'choice/happinessAfterSadness'
-            }
-        ]
-    },
-
-    happiness: {
-        audio: soundHappy,
-        text: `Good for you ! WHat else is there to say ?`,
-        oscOrder:`/millumin/action/launchColumn [3]`,
-        choices: [
-            {
-                name: 'Nothing !',
-                redirectTo: 'choice/endCredits'
-            }
-        ]
-    },
-
-    happinessAfterSadness: {
-        audio: soundHappy,
-        text: `Aw ! I prefer that !`,
-        oscOrder:`/millumin/action/launchColumn [3]`,
-        choices: [
-            {
-                name: `I'm happy now`,
-                redirectTo: 'choice/endCredits'
-            }
-        ]
-    },
-
-    endCredits: {
-        audio: '',
-        text: `Thank you for trying this installation !`,
-        oscOrder:`/millumin/action/launchColumn [9]`,
-        choices: [
-            {
-                name: 'Try again',
-                redirectTo: ''
-            }
+            thirdStageChoices()
         ]
     },
 
 
+    amusement: {
+        audio: mediationSound,
+        text: ``,
+        choices: [
+            thirdStageChoices()
+        ]
+    },
+
+    serenite: {
+        audio: mediationSound,
+        text: ``,
+        choices: [
+            thirdStageChoices()
+        ]
+    },
+
+    curiosite: {
+        audio: mediationSound,
+        text: ``,
+        choices: [
+            thirdStageChoices()
+        ]
+    },
+
+    degout: {
+        audio: mediationSound,
+        text: ``,
+        choices: [
+            thirdStageChoices()
+        ]
+    },
+
+    thirdStageChoices: {
+        audio: mediationSound,
+        text: `Et maintenant, ressens tu toujours la même chose ?`,
+        choices: endChoices()
+    },
+
+
+};
+
+
+export const finalPageContent = {
+    text: 'hello hello',
+    artwork: artworkAmusement
 };
