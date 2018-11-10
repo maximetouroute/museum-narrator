@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  @include fade-in(1s);
 
   .message {
     padding-top: 2rem;

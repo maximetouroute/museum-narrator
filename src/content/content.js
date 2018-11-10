@@ -116,6 +116,7 @@ export const choicePages = {
 
     amusement: {
         audio: mediationSound,
+        ledColor: rgb(0,0,200),
         text: ``,
         choices: [
             thirdStageChoices()
@@ -124,6 +125,7 @@ export const choicePages = {
 
     serenite: {
         audio: mediationSound,
+        ledColor: rgb(100,100,100),
         text: ``,
         choices: [
             thirdStageChoices()
@@ -140,6 +142,7 @@ export const choicePages = {
 
     degout: {
         audio: mediationSound,
+        ledColor: rgb(0,200,0),
         text: ``,
         choices: [
             thirdStageChoices()
