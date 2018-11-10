@@ -4,6 +4,7 @@ import { Fetch } from 'react-request';
 
 import { SketchPicker } from 'react-color';
 import {RPI_IP} from "../../content/content";
+import {LEDManager} from "../../utils/LEDManager";
 
 export class LedTester extends Component {
 
@@ -27,11 +28,8 @@ export class LedTester extends Component {
 
 
     manualRequest(color) {
-        const url = 'http://' + '192.168.43.177:5000' + '/colorControl';
-        const xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", url, true);
-        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        xmlhttp.send(JSON.stringify(color))
+        const ledManager = new LEDManager();
+        ledManager.sendColor(color.red, color.green, color.blue);
     }
 
     handleChange(color, event) {

@@ -5,6 +5,7 @@ import Menu from "../../components/buttonList/buttonList";
 import './chooserPage.scss';
 import {OSCConfig} from "./../../content/content";
 import {LEDManager} from "../../utils/LEDManager";
+import {SolidStateMemory} from "../../utils/SolidStateMemory";
 
 export default class ChooserPage extends Component {
 
@@ -14,6 +15,8 @@ export default class ChooserPage extends Component {
         this.tryOSC();
         this.tryLED();
 
+        const ssMemory = new SolidStateMemory();
+        ssMemory.clearChoices();
     }
 
     goToMenu() {
@@ -21,6 +24,11 @@ export default class ChooserPage extends Component {
     }
 
     buttonClickedForChoice(choice) {
+        if( choice.artworkKey !== void 0) {
+            const ssMemory = new SolidStateMemory();
+            ssMemory.pushChoice(choice.artworkKey);
+        }
+
         this.props.history.push(process.env.PUBLIC_URL + '/' + choice.redirectTo)
     }
 
@@ -46,16 +54,15 @@ export default class ChooserPage extends Component {
             this.sendOSC(content.oscOrder)
         }
     }
+
     sendOSC(action) {
         const OSC = require('osc-js');
         let osc = new OSC();
         osc.on('open', () => {
             let message = new OSC.Message(action);
             osc.send(message);
-            console.info('sent msg');
             osc.close();
         });
-
         osc.open(OSCConfig); // start a WebSocket server on port 8080
     }
 
@@ -98,6 +105,7 @@ export default class ChooserPage extends Component {
         }
 
     }
+
     render() {
         const key = this.props.match.params.key;
         // Bad url goes back to buttonList
@@ -124,33 +132,6 @@ export default class ChooserPage extends Component {
                 <ReactPlayer url={content.audio} loop={true} controls={false} width={0} height={0} playing/>
             </div>
             </>
-        )
-    }
-}
-
-
-
-
-class Header extends Component {
-    constructor(props) {
-        super(props)
-    }
-
-
-
-    render() {
-        const title = this.props.title;
-
-        return (
-            <div className="pageLayoutHeader header">
-
-                <div className="svgButton exitButton" onClick={() => {
-                    this.goToMenu()
-                }}>
-                    <div className="exit"/>
-                </div>
-                <h1>{title}</h1>
-            </div>
         )
     }
 }

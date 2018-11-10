@@ -4,13 +4,18 @@ import {finalPageContent, homepageContent} from './../../content/content';
 import Menu from "../../components/buttonList/buttonList";
 import "./finalPage.scss";
 import {Link} from "react-router-dom";
+import {SolidStateMemory} from "../../utils/SolidStateMemory";
+
+
 
 export default class FinalPage extends Component {
 
     constructor(props) {
         super(props);
 
-
+        const ssMemory = new SolidStateMemory();
+        console.info("solid state memory!!");
+        console.info(ssMemory.getChoices())
     }
 
     goToMenu() {

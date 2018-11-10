@@ -21,12 +21,13 @@ export const ContentTypes = Object.freeze({
 
 
 
-export const RPI_IP = '192.168.43.177:5000';
+export const RPI_IP = '10.3.141.1:5000';
 
 export const homepageContent = {
     title: <>Dans les 2 sens</>,
     subtitle: `By The Musemotifs`,
-    actionButtonName: `Get in !`
+    actionButtonName: `Get in !`,
+    redirectTo: 'choice/questionOne'
 };
 
 
@@ -38,7 +39,7 @@ export const OSCConfig = {
 function thirdStageChoices() {
     return {
         name: 'continue',
-        redirectTo: 'choice/thirdStageChoices'
+        redirectTo: 'choice/questionTwo'
     }
 }
 
@@ -46,26 +47,32 @@ function feelingChoices() {
     return [
         {
             name: 'Ennui',
+            artworkKey: 'ennui',
             redirectTo: 'choice/ennui'
         },
         {
             name: 'Rêverie',
+            artworkKey: 'reverie',
             redirectTo: 'choice/reverie'
         },
         {
             name: 'Amusement',
+            artworkKey: 'amusement',
             redirectTo: 'choice/amusement'
         },
         {
             name: 'Sérénité',
+            artworkKey: 'serenite',
             redirectTo: 'choice/serenite'
         },
         {
             name: 'Curiosité',
+            artworkKey: 'curiosite',
             redirectTo: 'choice/curiosite'
         },
         {
             name: 'Dégoût',
+            artworkKey: 'degout',
             redirectTo: 'choice/degout'
         }
     ]
@@ -90,10 +97,16 @@ function rgb(r,g,b) {
 
 export const choicePages = {
 
-    firstChoice: {
+    questionOne: {
         audio: soundNeutral,
         text: `Que ressens-tu face à cette oeuvre ?`,
         choices: feelingChoices()
+    },
+
+    questionTwo: {
+        audio: mediationSound,
+        text: `Et maintenant, ressens tu toujours la même chose ?`,
+        choices: endChoices()
     },
 
     ennui: {
@@ -148,13 +161,6 @@ export const choicePages = {
             thirdStageChoices()
         ]
     },
-
-    thirdStageChoices: {
-        audio: mediationSound,
-        text: `Et maintenant, ressens tu toujours la même chose ?`,
-        choices: endChoices()
-    },
-
 
 };
 
