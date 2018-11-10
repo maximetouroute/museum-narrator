@@ -1,8 +1,7 @@
 {
-  "name": "humanlapse",
+  "name": "museum-narrator",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://maximetouroute.github.io/humanlapse/",
   "dependencies": {
     "node-sass-chokidar": "0.0.3",
     "osc-js": "^2.0.2",
