@@ -1,9 +1,20 @@
 import React, {Component} from 'react';
 import ReactPlayer from 'react-player'
-
 import {choicePages} from './../../content/content';
 import Menu from "../../components/buttonList/buttonList";
 import './chooserPage.scss';
+
+const OSC = require('osc-js');
+let osc = new OSC();
+const config = { udpClient: { host:'192.168.1.38', port: 5000 } };
+
+osc.on('open', () => {
+    let message = new OSC.Message('/millumin/action/launchColumn[1]', Math.random());
+    osc.send(message);
+    console.info('sent msg');
+});
+
+osc.open({ host:'192.168.1.38', port: 5000 }); // start a WebSocket server on port 8080
 
 export default class ChooserPage extends Component {
 

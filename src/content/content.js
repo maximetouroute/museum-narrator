@@ -1,8 +1,9 @@
 import React from 'react';
 
 
-import soundOne from './../res/sound1.WAV';
-import soundTwo from './../res/sound2.WAV';
+import soundHappy from './../res/happy.mp3';
+import soundSad from './../res/sad.mp3';
+import soundNeutral from './../res/home.mp3';
 
 
 export const ContentTypes = Object.freeze({
@@ -28,7 +29,7 @@ export const contentPages = {
 export const choicePages = {
 
     firstChoice: {
-        audio: soundOne,
+        audio: soundNeutral,
         text: `what do you feel ?`,
         choices: [
             {
@@ -43,7 +44,7 @@ export const choicePages = {
     },
 
     sadness: {
-        audio: soundTwo,
+        audio: soundSad,
         text: `Well, too bad for you`,
         choices: [
             {
@@ -54,7 +55,7 @@ export const choicePages = {
     },
 
     happiness: {
-        audio: '',
+        audio: soundHappy,
         text: `Good for you ! WHat else is there to say ?`,
         choices: [
             {
@@ -65,7 +66,7 @@ export const choicePages = {
     },
 
     happinessAfterSadness: {
-        audio: '',
+        audio: soundHappy,
         text: `Aw ! I prefer that !`,
         choices: [
             {
