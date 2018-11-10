@@ -15,15 +15,15 @@ export const ContentTypes = Object.freeze({
 
 
 export const homepageContent = {
-    title: <>Le Cheval</>,
+    title: <>Emotion Emotion...</>,
     subtitle: `By The Musemotifs`,
     actionButtonName: `Get in !`
 };
 
 
-export const contentPages = {
-
-
+export const OSCConfig = {
+    host:'192.168.1.38',
+    port: 5000,
 };
 
 export const choicePages = {
@@ -31,6 +31,7 @@ export const choicePages = {
     firstChoice: {
         audio: soundNeutral,
         text: `what do you feel ?`,
+        oscOrder:`/millumin/action/launchColumn [1]`,
         choices: [
             {
                 name: 'Sadness',
@@ -45,6 +46,7 @@ export const choicePages = {
 
     sadness: {
         audio: soundSad,
+        oscOrder:`/millumin/action/launchColumn [2]`,
         text: `Well, too bad for you`,
         choices: [
             {
@@ -57,6 +59,7 @@ export const choicePages = {
     happiness: {
         audio: soundHappy,
         text: `Good for you ! WHat else is there to say ?`,
+        oscOrder:`/millumin/action/launchColumn [3]`,
         choices: [
             {
                 name: 'Nothing !',
@@ -68,6 +71,7 @@ export const choicePages = {
     happinessAfterSadness: {
         audio: soundHappy,
         text: `Aw ! I prefer that !`,
+        oscOrder:`/millumin/action/launchColumn [3]`,
         choices: [
             {
                 name: `I'm happy now`,
@@ -79,6 +83,7 @@ export const choicePages = {
     endCredits: {
         audio: '',
         text: `Thank you for trying this installation !`,
+        oscOrder:`/millumin/action/launchColumn [9]`,
         choices: [
             {
                 name: 'Try again',

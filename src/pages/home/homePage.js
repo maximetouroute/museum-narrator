@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import './homePage.css';
-import {homepageContent} from "./../../content/content";
+import {homepageContent, OSCConfig} from "./../../content/content";
 
 
 export class HomePage extends Component {
 
+    constructor(props) {
+        super(props);
+
+    }
     render() {
         return (
             <div className="homePage">
