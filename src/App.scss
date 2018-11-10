@@ -1,0 +1,9 @@
+@import './styles/breakpoints.scss';
+@import './styles/mixins.scss';
+@import './styles/theme.scss';
+
+.App {
+  color: $mainColor;
+  background-color: $backgroundColor;
+  font-family: 'Open Sans', sans-serif;
+}

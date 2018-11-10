@@ -1,0 +1,161 @@
+@import '../../styles/breakpoints.scss';
+@import '../../styles/mixins.scss';
+@import './../../styles/theme.scss';
+@import './../../styles/globals.scss';
+@import './../../styles/ui-elements.scss';
+
+.contentPage {
+
+  a {
+    @include themedTagA();
+  }
+  $headerHeight: 4rem;
+  $pageWidth: 60rem;
+  display: grid;
+
+  .pageLayout {
+    justify-self: center;
+    display: grid;
+    align-items: stretch;
+    justify-items: stretch;
+    align-content: start;
+    margin-bottom: 2rem;
+
+    @include breakpoint(small) {
+      width: 100vw
+    }
+    @include breakpoint(normal) {
+      justify-content: stretch;
+      width: 60rem;
+    }
+
+    &Header {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      @include breakpoint(small) {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+      height: $headerHeight;
+      margin-bottom: 2rem;
+    }
+
+    &ManualLayoutVideoPlayer {
+
+      @include breakpoint(normal) {
+        width: $pageWidth;
+      }
+      @include breakpoint(small) {
+        width: 100vw;
+      }
+
+      &.manualSixteenByNineHeight {
+        @include breakpoint(small) {
+          height: calc(56vw);
+        }
+        @include breakpoint(normal) {
+          height: calc(#{$pageWidth} / 1.77);
+        }
+      }
+    }
+  }
+
+  .exitButton {
+    place-self: center;
+    margin-right: 1.5rem;
+    margin-left: 0.5rem;
+  }
+
+  .previousButton {
+    margin-right: 2rem;
+    margin-left: 2rem;
+  }
+
+  .nextButton {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  .invisibleButton {
+    opacity: 0;
+    user-select: none;
+  }
+
+  .svgButton {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    place-items: center;
+    place-content: center;
+
+    @mixin basicButtonSVGStuff() {
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
+    @include fancyButton();
+    .exit {
+      background: url('./../../res/arrow-left.svg');
+      @include basicButtonSVGStuff();
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .next {
+      background: url('./../../res/arrow-right.svg');
+      @include basicButtonSVGStuff();
+      width: 1.5rem;
+      height: 1.5rem;
+
+    }
+
+    .previous {
+      background: url('./../../res/arrow-left.svg');
+      @include basicButtonSVGStuff();
+      width: 1.5rem;
+      height: 1.5rem;
+
+    }
+
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+
+    h1 {
+      align-self: center;
+      font-size: 1.2rem;
+    }
+  }
+
+  .contentText {
+    padding-bottom: 3rem;
+    @include breakpoint(small) {
+      padding-left: 0.4rem;
+      padding-right: 0.4rem;
+    }
+  }
+
+  .navigationButtons {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    place-content: center;
+    font-size: 2rem;
+
+    .middleText {
+      font-size: 1.5rem;
+      place-self: center;
+    }
+  }
+
+  .contentCredits {
+    font-style: italic;
+    text-align: center;
+    color: $mainColorIdle;
+  }
+
+}

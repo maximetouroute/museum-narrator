@@ -1,0 +1,41 @@
+@import '../../styles/breakpoints.scss';
+@import '../../styles/mixins.scss';
+@import './../../styles/theme.scss';
+@import './../../styles/globals.scss';
+
+// Take all available room
+.menuPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
+  .message {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    width: calc(100% - 2rem);
+    display: grid;
+    align-items: start;
+    justify-items: center;
+    color: $mainColor;
+
+    .text {
+      text-align: center;
+      font-size: 2.5em;
+
+      &.big {
+        font-weight: 400;
+        margin-bottom: 0.5em;
+        text-transform: uppercase;
+      }
+
+      &.small {
+        font-size: 1.5em;
+        color: $mainColorIdle;
+      }
+    }
+  }
+}
