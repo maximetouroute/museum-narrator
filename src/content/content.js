@@ -40,7 +40,7 @@ function generateArtworkColorPalette(artworkKey, colors) {
 
 export const artworkColorPalettes = [
 
-    generateArtworkColorPalette('amusement', [
+    generateArtworkColorPalette('tristesse', [
         '#DF9696',
     ]),
 
@@ -91,9 +91,9 @@ function feelingChoices() {
             redirectTo: 'choice/reverie'
         },
         {
-            name: 'Amusement',
-            artworkKey: 'amusement',
-            redirectTo: 'choice/amusement'
+            name: 'Tristesse',
+            artworkKey: 'tristesse',
+            redirectTo: 'choice/tristesse'
         },
         {
             name: 'Sérénité',
@@ -146,6 +146,7 @@ export const choicePages = {
 
     ennui: {
         audio: mediationSound,
+        ledColor: rgb(16,0,29),
         text: ``,
         choices: [
             thirdStageChoices()
@@ -154,7 +155,7 @@ export const choicePages = {
 
     reverie: {
         audio: mediationSound,
-        ledColor: rgb(200,0,0),
+        ledColor: rgb(102,43,36),
         text: ``,
         choices: [
             thirdStageChoices()
@@ -162,10 +163,10 @@ export const choicePages = {
     },
 
 
-    amusement: {
+    tristesse: {
         audio: mediationSound,
-        ledColor: rgb(0,0,200),
         text: ``,
+        ledColor: rgb(0,12,24),
         choices: [
             thirdStageChoices()
         ]
@@ -173,7 +174,7 @@ export const choicePages = {
 
     serenite: {
         audio: mediationSound,
-        ledColor: rgb(100,100,100),
+        ledColor: rgb(126,211,33),
         text: ``,
         choices: [
             thirdStageChoices()
@@ -182,6 +183,7 @@ export const choicePages = {
 
     curiosite: {
         audio: mediationSound,
+        ledColor: rgb(117,73,1),
         text: ``,
         choices: [
             thirdStageChoices()
@@ -190,7 +192,7 @@ export const choicePages = {
 
     degout: {
         audio: mediationSound,
-        ledColor: rgb(0,200,0),
+        ledColor: rgb(14,13,0),
         text: ``,
         choices: [
             thirdStageChoices()
@@ -201,6 +203,6 @@ export const choicePages = {
 
 
 export const finalPageContent = {
-    text: 'hello hello',
+    text: 'hello hello some text',
     artwork: artworkAmusement
 };

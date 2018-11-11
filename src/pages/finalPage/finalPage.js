@@ -6,7 +6,7 @@ import "./finalPage.scss";
 import {Link} from "react-router-dom";
 import {SolidStateMemory} from "../../utils/SolidStateMemory";
 import {GenerativeArtwork} from "../generativeArtwork/generativeArtwork";
-
+import {LEDManager} from "../../utils/LEDManager";
 
 
 export default class FinalPage extends Component {
@@ -16,7 +16,9 @@ export default class FinalPage extends Component {
 
         const ssMemory = new SolidStateMemory();
         console.info("solid state memory!!");
-        console.info(ssMemory.getChoices())
+        console.info(ssMemory.getChoices());
+        const ledManager = new LEDManager();
+        ledManager.sendColor(200,200,200);
     }
 
     goToMenu() {
@@ -32,7 +34,7 @@ export default class FinalPage extends Component {
             <div className="menuPage">
 
                 <div className="message">
-                    <div className="text big">Voici ton sentiment</div>
+                    <div className="text big">{text}</div>
                 </div>
 
 
