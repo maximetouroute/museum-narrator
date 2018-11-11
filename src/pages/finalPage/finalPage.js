@@ -5,6 +5,7 @@ import Menu from "../../components/buttonList/buttonList";
 import "./finalPage.scss";
 import {Link} from "react-router-dom";
 import {SolidStateMemory} from "../../utils/SolidStateMemory";
+import {GenerativeArtwork} from "../generativeArtwork/generativeArtwork";
 
 
 
@@ -34,7 +35,8 @@ export default class FinalPage extends Component {
                     <div className="text big">Voici ton sentiment</div>
                 </div>
 
-                <img className="image" src={finalPageContent.artwork}/>
+
+                <GenerativeArtwork class="image"/>
 
                 <Link to={process.env.PUBLIC_URL + '/'} className="button">Partager sur Instagram</Link>
 
@@ -44,3 +46,5 @@ export default class FinalPage extends Component {
         )
     }
 }
+
+//                 <!--<img className="image" src={finalPageContent.artwork}/>-->
