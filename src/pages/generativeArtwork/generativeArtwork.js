@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {artworkColorPalettes} from "../../content/content";
+import {SolidStateMemory} from "../../utils/SolidStateMemory";
 
 const canvasWidth = 720;
 const canvasHeight = 720;
@@ -71,6 +73,42 @@ function randomBetween(min, max) {
 }
 
 
+// color palette
+function getColorPaletteForCurrentFeelings() {
+    let palette = [];
+    const ssMemory = new SolidStateMemory();
+    const feelings = ssMemory.getChoices();
+    console.log('feelings-->');
+    console.log(feelings);
+
+    if(feelings===undefined || artworkColorPalettes===undefined) {
+        console.info("DEFAULT CHOICE!!!");
+        return ['#7D2A48', '#F7A5OC'];
+    }
+    for(let feelingIndex = 0 ; feelingIndex<feelings.length ; feelingIndex++) {
+        const currentFeeling = feelings[feelingIndex];
+        console.log('for artworkKey :' + currentFeeling);
+
+        for(let i=0 ; i<artworkColorPalettes.length ; i++) {
+            const currentPalette = artworkColorPalettes[i];
+            if(currentPalette.artworkKey === currentFeeling) {
+            console.log('got correct palette');
+            console.log(currentPalette);
+            palette.push(...currentPalette.colorPalette);
+            }
+            }
+
+
+        }
+
+    return palette;
+
+
+
+
+
+}
+
 export class GenerativeArtwork extends React.Component {
 
     componentDidMount() {
@@ -81,10 +119,11 @@ export class GenerativeArtwork extends React.Component {
         ctx.fillStyle = getRandomColorForPalette(testPalette);
         ctx.fillRect(0,0,canvasWidth, canvasHeight);
 
+        const colorPalette = getColorPaletteForCurrentFeelings();
         for(let width=0 ; width < canvasWidth; width+=areaWidth) {
             for( let height=areaHeight ; height < canvasHeight ; height+=areaHeight) {
 
-                const colorForThisIteration = getRandomColorForPalette(testPalette);
+               const colorForThisIteration = getRandomColorForPalette(colorPalette);
 
                 // kip some areas
                 const shouldWeSkip = Math.floor(randomBetween(1,5));

@@ -31,6 +31,41 @@ export const homepageContent = {
 };
 
 
+function generateArtworkColorPalette(artworkKey, colors) {
+    return  {
+        artworkKey: artworkKey,
+        colorPalette: colors
+    }
+}
+
+export const artworkColorPalettes = [
+
+    generateArtworkColorPalette('amusement', [
+        '#DF9696',
+    ]),
+
+    generateArtworkColorPalette('reverie', [
+        '#00626A',
+    ]),
+
+    generateArtworkColorPalette('curiosite', [
+        '#36302F'
+    ]),
+
+    generateArtworkColorPalette('degout', [
+        '#F9DC00',
+    ]),
+
+    generateArtworkColorPalette('serenite', [
+        '#E4DD00'
+    ]),
+
+    generateArtworkColorPalette('ennui', [
+        '#CF4C2E',
+    ])
+];
+
+
 export const OSCConfig = {
     host:'192.168.43.76',
     port: 5000,
