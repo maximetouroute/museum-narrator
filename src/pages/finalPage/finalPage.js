@@ -18,32 +18,39 @@ export default class FinalPage extends Component {
         console.info("solid state memory!!");
         console.info(ssMemory.getChoices());
         const ledManager = new LEDManager();
-        ledManager.sendColor(200,200,200);
+        ledManager.sendColor(200,100,100);
     }
 
     goToMenu() {
         this.props.history.push(process.env.PUBLIC_URL + '/')
     }
 
-
     render() {
 
         const text = finalPageContent.text;
-
+        const choiceKey = this.props.match.params.key;
+        const audio = finalPageContent.sounds[choiceKey];
+        const begAudio = finalPageContent.audio;
         return (<>
             <div className="menuPage">
-
+                <Link to={process.env.PUBLIC_URL + '/'} className="button">Retour à l'accueil</Link>
                 <div className="message">
                     <div className="text big">{text}</div>
                 </div>
 
-
                 <GenerativeArtwork class="image"/>
 
-                <Link to={process.env.PUBLIC_URL + '/'} className="button">Partager sur Instagram</Link>
+                <div className="message">
+                    <div className="text small">
+                        {finalPageContent.subtext}
+                    </div>
+                </div>
+                <br/>
+                <br/>
 
-                <Link to={process.env.PUBLIC_URL + '/'} className="button">Accueil</Link>
+
             </div>
+                <ReactPlayer url={audio} loop={false} controls={false} width={0} height={0} playing/>
             </>
         )
     }

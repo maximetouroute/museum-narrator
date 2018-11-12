@@ -96,7 +96,7 @@ export default class ChooserPage extends Component {
         if(content.ledColor !== void 0)
         {
            return {
-               backgroundColor: `rgba(${content.ledColor.red},${content.ledColor.green},${content.ledColor.blue},0.2)`
+               backgroundColor: `rgba(${content.ledColor.red},${content.ledColor.green},${content.ledColor.blue},0.5)`
            }
         }
         else
@@ -108,6 +108,7 @@ export default class ChooserPage extends Component {
 
     render() {
         const key = this.props.match.params.key;
+
         // Bad url goes back to buttonList
         if (choicePages[key] === undefined) {
             console.log('undefined for key ' + key);
@@ -122,14 +123,15 @@ export default class ChooserPage extends Component {
             }>
 
                 <div className="message">
-                    <div className="text big">{content.text}</div>
+                    <div className="text small">{content.text}</div>
+                    <div className="text big">{content.subtext}</div>
                 </div>
-
+                <ReactPlayer url={content.audio} loop={false} controls={true} width={0} height={0} playing/>
             <Menu buttons={choices} onMenuClick={(choice) => {
             this.buttonClickedForChoice(choice)
         }}/>
 
-                <ReactPlayer url={content.audio} loop={true} controls={false} width={0} height={0} playing/>
+
             </div>
             </>
         )

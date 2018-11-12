@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {artworkColorPalettes} from "../../content/content";
 import {SolidStateMemory} from "../../utils/SolidStateMemory";
 
-const canvasWidth = 720;
-const canvasHeight = 720;
+const canvasWidth = 500;
+const canvasHeight = 500;
 const numberOfAreas = 4;
 const areaWidth = canvasWidth / numberOfAreas;
 const areaHeight = canvasHeight / numberOfAreas;
@@ -126,7 +126,7 @@ export class GenerativeArtwork extends React.Component {
                const colorForThisIteration = getRandomColorForPalette(colorPalette);
 
                 // kip some areas
-                const shouldWeSkip = Math.floor(randomBetween(1,5));
+                const shouldWeSkip = Math.floor(randomBetween(1,15));
                 if(shouldWeSkip===1) {
                     continue;
                 }
@@ -164,7 +164,7 @@ export class GenerativeArtwork extends React.Component {
 
     render() {
         return(
-            <div style={{alignSelf: 'center'}}>
+            <div style={{alignSelf: 'center', backgroundColor: `white`, padding: `3em`, border: `solid 2px dimgray`}}>
                 <canvas ref="canvas" width={canvasWidth} height={canvasHeight} />
             </div>
         )

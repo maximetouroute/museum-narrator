@@ -4,15 +4,28 @@ import React from 'react';
 import soundHappy from './../res/happy.mp3';
 import mediationSound from './../res/happy.mp3';
 import soundNeutral from './../res/home.mp3';
+import logoHome from './../res/logo_home.png';
 
 
-// Final artworks
-import artworkDegout from './../res/artworks/degout.png';
-import artworkReverie from './../res/artworks/reverie.png';
-import artworkCuriosite from './../res/artworks/curiosite.png';
-import artworkEnnui from './../res/artworks/ennui.png';
-import artworkAmusement from './../res/artworks/amusement.png';
-import artworkSerenite from './../res/artworks/serenite.png';
+import finalSoundReverie from './../res/finalSounds/REVERIE.mp3';
+import fsCuriosite from './../res/finalSounds/CURIOSITE.mp3';
+import fsDegout from './../res/finalSounds/DEGOUT.mp3';
+import fsSerenite from './../res/finalSounds/SERENITE.mp3';
+import fsTristesse from './../res/finalSounds/TRISTESSE.mp3';
+import fsEnnui from './../res/finalSounds/ENNUI.mp3';
+
+import msReverie from './../res/mediationSounds/REVERIE.mp3';
+import msCuriosite from './../res/mediationSounds/CURIOSITE.mp3';
+import msDegout from './../res/mediationSounds/DEGOUT.mp3';
+import msSerenite from './../res/mediationSounds/SERENITE.mp3';
+import msTristesse from './../res/mediationSounds/TRISTESSE.mp3';
+import msEnnui from './../res/mediationSounds/ENNUI.mp3';
+
+
+import sBienvenue from './../res/sounds/bienvenue.mp3';
+import sPartOne from './../res/sounds/partOne.mp3';
+import sPartTwo from './../res/sounds/partTwo.mp3';
+import sPartFinal from './../res/sounds/final.mp3'
 
 export const ContentTypes = Object.freeze({
     CHOICE:   Symbol("choice"),
@@ -26,8 +39,11 @@ export const RPI_IP = '10.3.141.1:5000';
 export const homepageContent = {
     title: <>Dans les 2 sens</>,
     subtitle: `By The Musemotifs`,
-    actionButtonName: `Get in !`,
-    redirectTo: 'choice/questionOne'
+    subsubtitle: `Prennez le casque situé à votre droite`,
+    actionButtonName: `DÉMARRER`,
+    redirectTo: 'choice/questionOne',
+    logo: logoHome,
+    audio: void 0
 };
 
 
@@ -41,27 +57,65 @@ function generateArtworkColorPalette(artworkKey, colors) {
 export const artworkColorPalettes = [
 
     generateArtworkColorPalette('tristesse', [
+        '#F9DC00',
+        '#CF4C2E',
+        '#00626A',
+        '#7D2A48',
         '#DF9696',
+        '#F7A5OC',
+        '#46AE50',
+        '#36302F'
     ]),
 
     generateArtworkColorPalette('reverie', [
-        '#00626A',
+        '#859ec7',
+        '#7D2A48',
+        '#DF9696',
+        '#F7A5OC',
     ]),
 
     generateArtworkColorPalette('curiosite', [
+        '#F9DC00',
+        '#CF4C2E',
+        '#00626A',
+        '#7D2A48',
+        '#DF9696',
+        '#F7A5OC',
+        '#46AE50',
         '#36302F'
     ]),
 
     generateArtworkColorPalette('degout', [
         '#F9DC00',
+        '#CF4C2E',
+        '#00626A',
+        '#7D2A48',
+        '#DF9696',
+        '#F7A5OC',
+        '#46AE50',
+        '#36302F'
     ]),
 
     generateArtworkColorPalette('serenite', [
-        '#E4DD00'
+        '#F9DC00',
+        '#CF4C2E',
+        '#00626A',
+        '#7D2A48',
+        '#DF9696',
+        '#F7A5OC',
+        '#46AE50',
+        '#36302F'
     ]),
 
     generateArtworkColorPalette('ennui', [
+        '#F9DC00',
         '#CF4C2E',
+        '#00626A',
+        '#7D2A48',
+        '#DF9696',
+        '#F7A5OC',
+        '#46AE50',
+        '#36302F'
     ])
 ];
 
@@ -73,12 +127,12 @@ export const OSCConfig = {
 
 function thirdStageChoices() {
     return {
-        name: 'continue',
+        name: `J'ai fini d'écouter`,
         redirectTo: 'choice/questionTwo'
     }
 }
 
-function feelingChoices() {
+function feelingChoicesOne() {
     return [
         {
             name: 'Ennui',
@@ -113,14 +167,41 @@ function feelingChoices() {
     ]
 }
 
-function endChoices() {
-    const daaa = feelingChoices().map(choice => {
-        choice.redirectTo = 'final';
-        return choice;
-    });
-
-    return daaa;
+function feelingChoicesTwo() {
+    return [
+        {
+            name: 'Ennuyé',
+            artworkKey: 'ennui',
+            redirectTo: 'final/ennui'
+        },
+        {
+            name: 'Rêveur',
+            artworkKey: 'reverie',
+            redirectTo: 'final/reverie'
+        },
+        {
+            name: 'Triste',
+            artworkKey: 'tristesse',
+            redirectTo: 'final/tristesse'
+        },
+        {
+            name: 'Serein',
+            artworkKey: 'serenite',
+            redirectTo: 'final/serenite'
+        },
+        {
+            name: 'Curieux',
+            artworkKey: 'curiosite',
+            redirectTo: 'final/curiosite'
+        },
+        {
+            name: 'Dégoûté',
+            artworkKey: 'degout',
+            redirectTo: 'final/degout'
+        }
+    ]
 }
+
 
 function rgb(r,g,b) {
     return {
@@ -130,33 +211,38 @@ function rgb(r,g,b) {
     };
 }
 
+function textForMediationPage() {
+    return <>Laissez vous porter par la musique et écoutez <strong>Auguste Herbin</strong>...</>;
+}
+
 export const choicePages = {
 
     questionOne: {
-        audio: soundNeutral,
-        text: `Que ressens-tu face à cette oeuvre ?`,
-        choices: feelingChoices()
+        audio: sPartOne,
+        text: <>Vous êtes face au tableau <br/><em>"Composition sur le mot Cheval" (1948)</em><br/> d'<strong>Auguste Herbin</strong></>,
+        subtext: `Que vous inspire cette oeuvre ?`,
+        choices: feelingChoicesOne()
     },
 
     questionTwo: {
-        audio: mediationSound,
-        text: `Et maintenant, ressens tu toujours la même chose ?`,
-        choices: endChoices()
+        audio: sPartTwo,
+        subtext: `Et maintenant, comment vous sentez-vous ?`,
+        choices: feelingChoicesTwo()
     },
 
     ennui: {
-        audio: mediationSound,
+        audio: msEnnui,
         ledColor: rgb(16,0,29),
-        text: ``,
+        text: textForMediationPage(),
         choices: [
             thirdStageChoices()
         ]
     },
 
     reverie: {
-        audio: mediationSound,
+        audio: msReverie,
         ledColor: rgb(102,43,36),
-        text: ``,
+        text: textForMediationPage(),
         choices: [
             thirdStageChoices()
         ]
@@ -164,8 +250,8 @@ export const choicePages = {
 
 
     tristesse: {
-        audio: mediationSound,
-        text: ``,
+        audio: msTristesse,
+        text: textForMediationPage(),
         ledColor: rgb(0,12,24),
         choices: [
             thirdStageChoices()
@@ -173,27 +259,27 @@ export const choicePages = {
     },
 
     serenite: {
-        audio: mediationSound,
+        audio: msSerenite,
         ledColor: rgb(126,211,33),
-        text: ``,
+        text: textForMediationPage(),
         choices: [
             thirdStageChoices()
         ]
     },
 
     curiosite: {
-        audio: mediationSound,
+        audio: msCuriosite,
         ledColor: rgb(117,73,1),
-        text: ``,
+        text: textForMediationPage(),
         choices: [
             thirdStageChoices()
         ]
     },
 
     degout: {
-        audio: mediationSound,
+        audio: msDegout,
         ledColor: rgb(14,13,0),
-        text: ``,
+        text: textForMediationPage(),
         choices: [
             thirdStageChoices()
         ]
@@ -203,6 +289,15 @@ export const choicePages = {
 
 
 export const finalPageContent = {
-    text: 'hello hello some text',
-    artwork: artworkAmusement
+    text: <>Voici votre émotion graphique et sonore <br/>selon <strong>l'alphabet plastique</strong> d'Auguste Herbin</>,
+    subtext:<></>,
+    audio: sPartFinal,
+    sounds: {
+        reverie: finalSoundReverie,
+        ennui: fsEnnui,
+        degout: fsDegout,
+        curiosite: fsCuriosite,
+        serenite: fsSerenite,
+        tristesse: fsTristesse
+    }
 };
