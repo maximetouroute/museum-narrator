@@ -43,9 +43,24 @@ function drawCube(ctx, position, size, color) {
 function drawTriangle(ctx, position, size, color) {
     ctx.fillStyle = color;
     ctx.beginPath();
-    ctx.moveTo(position.x, position.y);
-    ctx.lineTo(position.x+size.x, position.y);
-    ctx.lineTo(position.x + size.x/2, position.y - size.y);
+
+    const upDownRandom =  Math.floor(randomBetween(1,2));
+
+    if(upDownRandom===1) {
+        // Top
+        ctx.moveTo(position.x, position.y);
+        ctx.lineTo(position.x+size.x, position.y);
+        ctx.lineTo(position.x + size.x/2, position.y - size.y);
+    } else {
+        // Downside
+        ctx.moveTo(position.x, position.y - size.y);
+        ctx.lineTo(position.x+size.x, position.y - size.y);
+        ctx.lineTo(position.x + size.x/2, position.y);
+    }
+
+
+
+
     ctx.closePath();
     ctx.fill();
 }
@@ -92,23 +107,44 @@ function getColorPaletteForCurrentFeelings() {
         for(let i=0 ; i<artworkColorPalettes.length ; i++) {
             const currentPalette = artworkColorPalettes[i];
             if(currentPalette.artworkKey === currentFeeling) {
-            console.log('got correct palette');
-            console.log(currentPalette);
-            palette.push(...currentPalette.colorPalette);
+                console.log('got correct palette');
+                console.log(currentPalette);
+                palette.push(...currentPalette.colorPalette);
             }
             }
-
-
         }
 
     return palette;
-
-
-
-
-
 }
 
+function drawShape(ctx, position, color) {
+    const shapeRandom = Math.floor(randomBetween(1,4));
+    if(shapeRandom===1)  {
+        drawCube(ctx, position, {x:areaWidth, y:areaHeight}, color);
+    }
+
+    else if(shapeRandom===2) {
+
+        // Random height for triangle
+        const heightRandom = Math.floor(randomBetween(1,2));
+        let height = 0;
+        if(heightRandom===1) {
+            height = areaHeight;
+        } else if(heightRandom===2) {
+            height = 2*areaHeight;
+        }
+
+        drawTriangle(ctx, position, {x:areaWidth, y:height}, color);
+    }
+
+    else if(shapeRandom===3) {
+        drawCircle(ctx, position, areaWidth/2, color);
+    }
+
+    else if(shapeRandom===4) {
+        drawHalfCircle(ctx, position, areaWidth/2, color);
+    }
+}
 export class GenerativeArtwork extends React.Component {
 
     componentDidMount() {
@@ -116,47 +152,28 @@ export class GenerativeArtwork extends React.Component {
         const ctx = canvas.getContext("2d");
 
         //background
-        ctx.fillStyle = getRandomColorForPalette(testPalette);
+        ctx.fillStyle = getRandomColorForPalette(getColorPaletteForCurrentFeelings());
         ctx.fillRect(0,0,canvasWidth, canvasHeight);
 
         const colorPalette = getColorPaletteForCurrentFeelings();
-        for(let width=0 ; width < canvasWidth; width+=areaWidth) {
-            for( let height=areaHeight ; height < canvasHeight ; height+=areaHeight) {
+        for(let width=0 ; width<canvasWidth; width+=areaWidth) {
+            for( let height=areaHeight ; height<canvasHeight ; height+=areaHeight) {
 
-               const colorForThisIteration = getRandomColorForPalette(colorPalette);
 
                 // kip some areas
                 const shouldWeSkip = Math.floor(randomBetween(1,15));
                 if(shouldWeSkip===1) {
                     continue;
+                } else if (shouldWeSkip > 12) {
+                    // Double for some
+                    const colorForThisIteration = getRandomColorForPalette(colorPalette);
+                    drawShape(ctx, {x:width, y:height}, colorForThisIteration)
                 }
 
-                const shapeRandom = Math.floor(randomBetween(1,4));
-                if(shapeRandom===1)  {
-                    drawCube(ctx, {x:width, y:height}, {x:areaWidth, y:areaHeight}, colorForThisIteration);
-                }
+                const colorForThisIteration = getRandomColorForPalette(colorPalette);
+                drawShape(ctx, {x:width, y:height}, colorForThisIteration)
 
-                else if(shapeRandom===2) {
 
-                    // Random height for triangle
-                    const heightRandom = Math.floor(randomBetween(1,2));
-                    let height = 0;
-                    if(heightRandom===1) {
-                        height = areaHeight;
-                    } else if(heightRandom===2) {
-                        height = 2*areaHeight;
-                    }
-
-                    drawTriangle(ctx, {x:width, y:height}, {x:areaWidth, y:height}, colorForThisIteration);
-                }
-
-                else if(shapeRandom===3) {
-                    drawCircle(ctx, {x:width, y:height}, areaWidth/2, colorForThisIteration);
-                }
-
-                else if(shapeRandom===4) {
-                    drawHalfCircle(ctx, {x:width, y:height}, areaWidth/2, colorForThisIteration);
-                }
             }
         }
 

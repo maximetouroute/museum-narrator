@@ -22,7 +22,6 @@ import msTristesse from './../res/mediationSounds/TRISTESSE.mp3';
 import msEnnui from './../res/mediationSounds/ENNUI.mp3';
 
 
-import sBienvenue from './../res/sounds/bienvenue.mp3';
 import sPartOne from './../res/sounds/partOne.mp3';
 import sPartTwo from './../res/sounds/partTwo.mp3';
 import sPartFinal from './../res/sounds/final.mp3'
@@ -33,13 +32,12 @@ export const ContentTypes = Object.freeze({
 });
 
 
-
 export const RPI_IP = '10.3.141.1:5000';
 
 export const homepageContent = {
     title: <>Dans les 2 sens</>,
     subtitle: `By The Musemotifs`,
-    subsubtitle: `Prennez le casque situé à votre droite`,
+    subsubtitle: `Prenez le casque situé à votre droite`,
     actionButtonName: `DÉMARRER`,
     redirectTo: 'choice/questionOne',
     logo: logoHome,
@@ -57,65 +55,39 @@ function generateArtworkColorPalette(artworkKey, colors) {
 export const artworkColorPalettes = [
 
     generateArtworkColorPalette('tristesse', [
-        '#F9DC00',
-        '#CF4C2E',
-        '#00626A',
-        '#7D2A48',
-        '#DF9696',
-        '#F7A5OC',
-        '#46AE50',
-        '#36302F'
+        '#3f4f7e',
+        '#303c80',
+        '#393838'
     ]),
 
     generateArtworkColorPalette('reverie', [
-        '#859ec7',
         '#7D2A48',
         '#DF9696',
-        '#F7A5OC',
+        '#69aca7',
     ]),
 
     generateArtworkColorPalette('curiosite', [
         '#F9DC00',
         '#CF4C2E',
-        '#00626A',
-        '#7D2A48',
-        '#DF9696',
-        '#F7A5OC',
-        '#46AE50',
-        '#36302F'
+        '#56c1d9'
     ]),
 
     generateArtworkColorPalette('degout', [
-        '#F9DC00',
-        '#CF4C2E',
-        '#00626A',
-        '#7D2A48',
-        '#DF9696',
-        '#F7A5OC',
-        '#46AE50',
-        '#36302F'
+        '#83f949',
+        '#5e443c',
+        '#6a2b25',
     ]),
 
     generateArtworkColorPalette('serenite', [
-        '#F9DC00',
-        '#CF4C2E',
-        '#00626A',
-        '#7D2A48',
-        '#DF9696',
-        '#F7A5OC',
+        '#df86d4',
+        '#b8b8df',
         '#46AE50',
-        '#36302F'
     ]),
 
     generateArtworkColorPalette('ennui', [
-        '#F9DC00',
-        '#CF4C2E',
-        '#00626A',
-        '#7D2A48',
-        '#DF9696',
-        '#F7A5OC',
-        '#46AE50',
-        '#36302F'
+        '#675590',
+        '#9ccfa3',
+        '#cfa164',
     ])
 ];
 
