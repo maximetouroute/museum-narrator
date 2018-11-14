@@ -118,7 +118,7 @@ export default class ChooserPage extends Component {
         const content = choicePages[key];
         const choices = content.choices;
         return (<>
-            <div className="menuPage" style={
+            <div className="chooserPage" style={
                 this.getPageStyle()
             }>
 

@@ -4,7 +4,7 @@
 @import './../../styles/globals.scss';
 
 // Take all available room
-.menuPage {
+.chooserPage {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -12,10 +12,7 @@
   @include fade-in(1s);
 
   .message {
-    padding-top: 2rem;
-    padding-bottom: 4rem;
-    padding-right: 1rem;
-    padding-left: 1rem;
+
     width: calc(100% - 2rem);
     display: grid;
     align-items: start;
@@ -27,6 +24,7 @@
       font-size: 2.5em;
 
       &.big {
+        font-size: 2em;
         font-weight: 400;
         margin-bottom: 0.5em;
         text-transform: uppercase;
@@ -35,6 +33,7 @@
       &.small {
         font-size: 1.5em;
         color: $mainColorIdle;
+        margin: 1em;
       }
     }
   }

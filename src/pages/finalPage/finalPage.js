@@ -32,7 +32,7 @@ export default class FinalPage extends Component {
         const audio = finalPageContent.sounds[choiceKey];
         const begAudio = finalPageContent.audio;
         return (<>
-            <div className="menuPage">
+            <div className="finalPage">
                 <Link to={process.env.PUBLIC_URL + '/'} className="button">Retour à l'accueil</Link>
                 <div className="message">
                     <div className="text big">{text}</div>

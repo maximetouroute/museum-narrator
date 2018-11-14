@@ -38,7 +38,7 @@ export class HomePage extends Component {
             <div className="homePage">
                 <div className="mainGrid">
                     <div className="message">
-                            <img src={homepageContent.logo} width={400} style={{margin:`auto`}} onClick={() => {this.openFullscreen()}}/>
+                            <img src={homepageContent.logo} width={250} style={{margin:`auto`}} onClick={() => {this.openFullscreen()}}/>
 
                         <div className="text">
                             <div className="small">
